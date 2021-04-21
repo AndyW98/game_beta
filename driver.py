@@ -6,6 +6,7 @@ import time
 # These are local imports from other files in your directory
 # structure
 from character import Character
+from config import Config
 
 '''
 When making a large project, the first step you want to do is
@@ -28,19 +29,19 @@ This ends up being easily translatable to code, since you can
 portion off each individual point to sections of code, as
 well as having documentation for anybody that reads it.
 '''
-
-# Global variables are traditionally named in all caps
-MAIN_CHAR_NAME = "Jerry"
-
 def main():
     
     # For now the main character can be defined in the main
     # function, but later on it's wiser to partition off its
     # declaration. Here, we make a main character with the
     # name of MAIN_CHAR_NAME
-    health = 50
-    main_char = Character(MAIN_CHAR_NAME, health)
-    main_char.print_name()
+    conf = Config("config.json")
+    data = conf.read()
 
+    main_char = Character(data['main_char'])
+    #print(main_char.get_stats())
+    main_char.level_up()
+    main_char.pretty_print_stats()
+    
 if __name__ == "__main__":
     main()
