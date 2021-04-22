@@ -14,8 +14,11 @@ class Character():
         self.name = args['name']
         self.level = args['level']
         self.health = args['health']
-        self.max_health = args['max_health']
         self.base_stats = args['base_stats']
+
+        self.max_health = 2 * args['base_stats']['con'] * args['level']
+        self.health = self.max_health
+        self.exp = 200 * (self.level - 1) * self.level
     
     # You'll notice that I'm defining the first parameter
     # of every function as 'self', this is because it's a
@@ -23,8 +26,7 @@ class Character():
     def print_name(self):
         print(self.name)
 
-    # Getters
-
+    # Gets the stats of the caracter
     def get_stats(self):
         my_dict = {
             'name': self.name,
@@ -35,9 +37,14 @@ class Character():
         }
         return json.dumps(my_dict, indent=2)
 
+    # Prints the character's stat prettily
     def pretty_print_stats(self):
         stats = "--------------------\n" + \
                 "Name:   " + self.name + "\n" \
+                "--------------------\n" + \
+                "Level:  " + str(self.level) + "\n" + \
+                "--------------------\n" + \
+                "Exp:    " + str(self.exp) + "\n" + \
                 "--------------------\n" + \
                 "Health: " + str(self.health) + \
                 " / " + str(self.max_health) + "\n" + \
@@ -45,7 +52,6 @@ class Character():
                 "Stats            \n" + \
                 "--------------------\n"
         print(stats)
-                
 
 
 
@@ -60,4 +66,5 @@ class Character():
         self.level += 1
         self.max_health += int(0.5 * self.base_stats['con'])
         self.health = self.max_health
+        self.exp = 200 * (self.level - 1) * self.level
 

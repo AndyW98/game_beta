@@ -34,7 +34,7 @@
         },
         "exotic": {
             "weight": 1,
-            "damage": 5,
+            "damage": 5
         }
     }
 }
