@@ -2,7 +2,8 @@ import json
 
 class Hero (Character):
 
+    '''
+    This is a Hero character
+    '''
     def __init__(self, args):
-        pass
-
-    
+        Character.__init__(self, args)
