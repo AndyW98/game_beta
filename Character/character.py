@@ -1,4 +1,3 @@
-
 import json
 
 class Character():
@@ -62,8 +61,8 @@ class Character():
 
     # Functions
 
-    def level_up(self):
-        self.level += 1
+    def level_up(self, level_add=1):
+        self.level += level_add
         self.max_health += int(0.5 * self.base_stats['con'])
         self.health = self.max_health
         self.exp = 200 * (self.level - 1) * self.level
