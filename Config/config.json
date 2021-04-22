@@ -1,0 +1,40 @@
+{
+    "main_char": {
+        "name": "Jerry",
+        "level": 1,
+        "health": 10,
+        "max_health": 10,
+        "base_stats": {
+            "con": 10,
+            "dex": 10,
+            "wis": 10,
+            "int": 10,
+            "str": 10,
+            "cha": 10
+        }
+    },
+
+    "weapons": {
+        "stick": {
+            "weight": 1,
+            "damage": 5
+        },
+        "knife": {
+            "weight": 2,
+            "damage": 8
+        },
+        "masher": {
+            "weight": 3,
+            "damage": 10
+        },
+        "wand": {
+            "weight": 1,
+            "damage": 0,
+            "magic": true
+        },
+        "exotic": {
+            "weight": 1,
+            "damage": 5,
+        }
+    }
+}

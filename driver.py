@@ -6,7 +6,7 @@ import time
 # These are local imports from other files in your directory
 # structure
 from Character.character import Character
-from config import Config
+from Config.config import Config
 
 '''
 When making a large project, the first step you want to do is
@@ -36,13 +36,16 @@ def main():
     # declaration. Here, we make a main character with the
     # name of MAIN_CHAR_NAME
     conf = Config("config.json")
-    data = conf.read()
+    char_list = conf.get_char_list()
+    print(char_list)
 
-    main_char = Character(data['main_char'])
-
-    main_char.pretty_print_stats()
+    main_char = char_list['main_char']
     main_char.level_up()
     main_char.pretty_print_stats()
+
+    villain = char_list['example_villain']
+    villain.level_up()
+    villain.pretty_print_stats()
     
 if __name__ == "__main__":
     main()
