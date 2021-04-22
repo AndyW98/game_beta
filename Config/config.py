@@ -1,6 +1,8 @@
 import json
 
 from Character.character import Character
+from Character.villain import Villain
+from Character.hero import Hero
 
 class Config():
 
@@ -37,4 +39,9 @@ class Config():
     def make_chars(self):
         for char_type in self.data['characters'].keys():
             for char in self.data['characters'][char_type].keys():
-                self.char_list[char] = Character(self.data['characters'][char_type][char])
+                if char_type == "villains":
+                    self.char_list[char] = Villain(self.data['characters'][char_type][char])
+                elif char_type == "heroes":
+                    self.char_list[char] = Hero(self.data['characters'][char_type][char])
+                else:
+                    self.char_list[char] = Character(self.data['characters'][char_type][char])

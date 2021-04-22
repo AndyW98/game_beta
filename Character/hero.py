@@ -1,5 +1,7 @@
 import json
 
+from Character.character import Character
+
 class Hero (Character):
 
     '''

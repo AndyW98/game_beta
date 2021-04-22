@@ -1,5 +1,6 @@
 import json
 
+from Character.character import Character
 
 class Villain (Character):
 
@@ -13,5 +14,3 @@ class Villain (Character):
         # Villains have 10 more health
         self.max_health += 10
         self.health = self.max_health
-
-    
