@@ -5,7 +5,7 @@ import time
 
 # These are local imports from other files in your directory
 # structure
-from character import Character
+from Character.character import Character
 from config import Config
 
 '''
@@ -39,7 +39,8 @@ def main():
     data = conf.read()
 
     main_char = Character(data['main_char'])
-    #print(main_char.get_stats())
+
+    main_char.pretty_print_stats()
     main_char.level_up()
     main_char.pretty_print_stats()
     
