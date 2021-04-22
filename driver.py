@@ -35,7 +35,7 @@ def main():
     # function, but later on it's wiser to partition off its
     # declaration. Here, we make a main character with the
     # name of MAIN_CHAR_NAME
-    conf = Config("config.json")
+    conf = Config("Config/config.json")
     char_list = conf.get_char_list()
     print(char_list)
 
@@ -47,5 +47,7 @@ def main():
     villain.level_up()
     villain.pretty_print_stats()
     
+    print(main_char.print_bag())
+
 if __name__ == "__main__":
     main()

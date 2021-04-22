@@ -1,5 +1,8 @@
 import json
 
+from Character.Inventory.inventory import Inventory
+
+
 class Character():
 
     '''
@@ -18,12 +21,23 @@ class Character():
         self.max_health = 2 * args['base_stats']['con'] * args['level']
         self.health = self.max_health
         self.exp = 200 * (self.level - 1) * self.level
+        self.carry_cap = 5 * args['base_stats']['str'] # Carrying Capacity
+
+        self.bag = Inventory()
+
     
     # You'll notice that I'm defining the first parameter
     # of every function as 'self', this is because it's a
     # self-referential thing declaring it as a class function
     def print_name(self):
         print(self.name)
+
+    # Printers
+
+    def print_bag(self):
+        print("Inventory Weight: " + \
+              str(self.bag.get_weight()) + " / " + \
+              str(self.carry_cap))
 
     # Gets the stats of the caracter
     def get_stats(self):
@@ -51,7 +65,6 @@ class Character():
                 "Stats            \n" + \
                 "--------------------\n"
         print(stats)
-
 
 
     # Setters
