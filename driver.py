@@ -7,6 +7,7 @@ import time
 # structure
 from Character.character import Character
 from Config.config import Config
+from Combat.combat import Combat
 
 '''
 When making a large project, the first step you want to do is
@@ -35,16 +36,17 @@ def main():
     # function, but later on it's wiser to partition off its
     # declaration. Here, we make a main character with the
     # name of MAIN_CHAR_NAME
-    conf = Config("config.json")
+    conf = Config("Config/config.json")
     char_list = conf.get_char_list()
-    print(char_list)
 
     main_char = char_list['main_char']
     main_char.level_up()
-    main_char.pretty_print_stats()
 
     villain = char_list['example_villain']
     villain.level_up()
+
+    Combat("melee", [main_char, villain])
+    main_char.pretty_print_stats()
     villain.pretty_print_stats()
     
 if __name__ == "__main__":

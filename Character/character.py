@@ -18,12 +18,25 @@ class Character():
         self.max_health = 2 * args['base_stats']['con'] * args['level']
         self.health = self.max_health
         self.exp = 200 * (self.level - 1) * self.level
+
+        self.damage = args['damage']
+        self.defense = args['defense']
     
     # You'll notice that I'm defining the first parameter
     # of every function as 'self', this is because it's a
     # self-referential thing declaring it as a class function
     def print_name(self):
         print(self.name)
+
+    def get_damage(self):
+        return self.damage
+    
+    def get_defense(self):
+        return self.defense
+    
+    # Expects incoming unmodified damage
+    def take_damage(self, incoming_damage):
+        self.health -= max(0, (incoming_damage - self.get_defense()))
 
     # Gets the stats of the caracter
     def get_stats(self):
@@ -66,4 +79,3 @@ class Character():
         self.max_health += int(0.5 * self.base_stats['con'])
         self.health = self.max_health
         self.exp = 200 * (self.level - 1) * self.level
-
