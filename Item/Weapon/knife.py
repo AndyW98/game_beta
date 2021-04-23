@@ -3,16 +3,24 @@ from Item.Weapon.weapon import Weapon, DamageType
 class Knife (Weapon):
 
     # Constructor
-    def __init__(self, weight=1, damage=1, level=1, name="stick", health=20):
-        Weapon.__init__(self, weight, damage, level, name, health)
+    def __init__(self, weight=1, power=1, level=1, name="stick", health=20):
+        Weapon.__init__(self, weight, power, level, name, health)
 
         self.level = 1
         self.name = name
         self.attack_type = DamageType.MELEE
 
-    # Deals damage based on half of the weapon's level
-    # times the weapon's base damage
-    # 
-    # Eventually will add bleed
-    def slash(self):
-        return round(0.5 * self.level * self.damage)
+    # Methods
+
+    def special_attack(self):
+        """Deals a slash attack and inflicts bleed.
+        This attack decreases the weapon's health by 1
+        """
+        if (self.health > 0):
+            self.health -= 1
+            return round(self.level * self.damage)
+        else:
+            return 1
+
+    def inflict_bleed(self, char):
+        pass

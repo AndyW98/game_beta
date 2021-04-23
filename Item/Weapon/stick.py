@@ -5,8 +5,8 @@ from Item.item import Item
 class Stick (Weapon):
 
     # Constructor
-    def __init__(self, weight=1, damage=1, level=1, name="stick", health=10):
-        Weapon.__init__(self, weight, damage, level, name, health)
+    def __init__(self, weight=1, power=1, level=1, name="stick", health=10):
+        Weapon.__init__(self, weight, power, level, name, health)
 
         self.level = level
         self.name = name
@@ -14,32 +14,21 @@ class Stick (Weapon):
 
     def __str__(self):
         stick_str = Weapon.__str__(self) + "\n" + \
-                    "Weapon Type: Stick"
+                    "  Weapon Type: Stick\n"
         return stick_str
 
     # Getter
 
     # Printer
-
     def print_weapon_stats(self):
-        print("--------------------\n" + \
-              "Weapon:\n" + \
-              " " + self.name + "\n" + \
-              "--------------------\n" + \
-              "Level:  " + str(self.level)  + "\n" + \
-              "Damage: " + str(self.damage) + "\n" + \
-              "Weight: " + str(self.weight) + "\n" + \
-              "--------------------\n")
-
-    # Special Attack
-    # 
-    # Deals damage based on half of the weapon's level
-    # times the weapon's base damage
-    # 
-    # Using this attack hurts the weapon
-    def smack(self):
-        if (self.current_health > 0):
-            self.current_health -= 1
+        str(super())
+    
+    def special_attack(self):
+        """Deals a smacck attack.
+        This attack decreases the weapon's health by 1
+        """
+        if (self.health > 0):
+            self.health -= 1
             return round(0.5 * self.level * self.damage)
         else:
             return 1
