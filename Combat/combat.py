@@ -1,8 +1,15 @@
 from Combat.dice_roller import d8
 
 class Combat:
+    """How combat is conducted"""
 
     def __init__(self, attack_type, characters):
+        """Constructor
+
+        Keyword arguments:
+        attack_type -- type of attack damage
+        characters  -- characters in combat
+        """        
         if attack_type == "melee":
             self.trade_damage(characters[0], characters[1])
 

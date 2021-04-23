@@ -26,7 +26,7 @@ class Weapon (Item):
                      "  Level:  " + str(self.level)  + "\n" + \
                      "  Power:  " + str(self.power) + "\n" + \
                      "  Weight: " + str(self.weight) + "\n" + \
-                     "  Durability: [" + str(self.health) + \
+                     "  Durability:  [" + str(self.health) + \
                          " / " + str(self.m_health) + \
                          "]\n"
         return weapon_str

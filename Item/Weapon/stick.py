@@ -13,7 +13,7 @@ class Stick (Weapon):
         self.attack_type = DamageType.MELEE
 
     def __str__(self):
-        stick_str = Weapon.__str__(self) + "\n" + \
+        stick_str = Weapon.__str__(self) + \
                     "  Weapon Type: Stick\n"
         return stick_str
 
@@ -24,7 +24,7 @@ class Stick (Weapon):
         str(super())
     
     def special_attack(self):
-        """Deals a smacck attack.
+        """Deals a smack attack.
         This attack decreases the weapon's health by 1
         """
         if (self.health > 0):
