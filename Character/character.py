@@ -1,7 +1,8 @@
 import json
+from enum import Enum
 
 from Character.Inventory.inventory import Inventory
-
+from Item.Weapon.weapon import Weapon
 
 class Character():
 
@@ -19,6 +20,7 @@ class Character():
         self.base_stats = args['base_stats']
 
         self.bag = Inventory()
+        self.weapon = Weapon() # Held weapon
 
         # Derived Stats
         self.max_health = 2 * args['base_stats']['con'] * args['level']
@@ -27,9 +29,36 @@ class Character():
         self.carry_cap = 5 * args['base_stats']['str'] # Carrying Capacity
 
         
-        self.damage = args['damage']
+        #self.damage = args['damage']
+        self.damage = round(args['base_stats']['str'] / 3)
         self.defense = args['defense']
-    
+
+    def __str__(self):
+        stats = "--------------------\n" + \
+                "Name:   " + self.name + "\n" \
+                "--------------------\n" + \
+                "Level:  " + str(self.level) + "\n" + \
+                "--------------------\n" + \
+                "Exp:    " + str(self.exp) + "\n" + \
+                "--------------------\n" + \
+                "Health: " + str(self.health) + \
+                " / " + str(self.max_health) + "\n" + \
+                "--------------------\n" + \
+                "Stats -\n" + \
+                "  Strength:     " + str(self.base_stats["str"]) + "\n" + \
+                "  Dexterity:    " + str(self.base_stats["dex"]) + "\n" + \
+                "  Constitution: " + str(self.base_stats["con"]) + "\n" + \
+                "  Intelligence: " + str(self.base_stats["int"]) + "\n" + \
+                "  Wisdom:       " + str(self.base_stats["wis"]) + "\n" + \
+                "  Charisma:     " + str(self.base_stats["cha"]) + "\n" + \
+                str(self.weapon) + \
+                "--------------------\n" + \
+                "Inventory - [" + str(self.bag.get_weight()) + \
+                    " / " + str(self.carry_cap) + "]\n" + \
+                str(self.bag)
+
+        return stats
+
     # You'll notice that I'm defining the first parameter
     # of every function as 'self', this is because it's a
     # self-referential thing declaring it as a class function
@@ -52,6 +81,9 @@ class Character():
     def get_defense(self):
         return self.defense
     
+    def get_weapon(self):
+        return self.weapon
+
     # Gets the stats of the caracter
     def get_stats(self):
         my_dict = {
@@ -65,24 +97,7 @@ class Character():
 
     # Prints the character's stat prettily
     def pretty_print_stats(self):
-        stats = "--------------------\n" + \
-                "Name:   " + self.name + "\n" \
-                "--------------------\n" + \
-                "Level:  " + str(self.level) + "\n" + \
-                "--------------------\n" + \
-                "Exp:    " + str(self.exp) + "\n" + \
-                "--------------------\n" + \
-                "Health: " + str(self.health) + \
-                " / " + str(self.max_health) + "\n" + \
-                "--------------------\n" + \
-                "Stats -\n" + \
-                "  Strength:     " + str(self.base_stats["str"]) + "\n" + \
-                "  Dexterity:    " + str(self.base_stats["dex"]) + "\n" + \
-                "  Constitution: " + str(self.base_stats["con"]) + "\n" + \
-                "  Intelligence: " + str(self.base_stats["int"]) + "\n" + \
-                "  Wisdom:       " + str(self.base_stats["wis"]) + "\n" + \
-                "  Charisma:     " + str(self.base_stats["cha"]) + "\n" + \
-                "--------------------\n"
+        stats = self.__str__()
         print(stats)
 
 
@@ -91,13 +106,48 @@ class Character():
     def set_name(self, name):
         self.name = name
 
+    def set_weapon(self, weapon):
+        self.weapon = weapon
+
     # Functions
 
-    def level_up(self, level_add=1):
+    # ------------------------------------------------
+    # Levels up character
+    # ------------------------------------------------
+    # Expects a string for stat1 and stat2 to increase
+    # the corresponding base stat
+
+    def level_up(self, stat1, stat2, level_add=1):
         self.level += level_add
+        
         self.max_health += int(0.5 * self.base_stats['con'])
         self.health = self.max_health
+        
         self.exp = 200 * (self.level - 1) * self.level
+
+        self.base_stats[stat1] += level_add
+        self.base_stats[stat2] += level_add
+
+    # Adds item to the character's inventory
+    # Expects an Item object
+    def add_item(self, item):
+        self.bag.add_item(item)
+
+    # Expects that weapon is a Weapon
+    def equip_weapon(self, weapon):
+        if (weapon in self.bag.get_bag()):
+            self.set_weapon(weapon)
+
+
+    # ------------------------------------------------
+    # Deal Damage
+    # ------------------------------------------------
+    # Expects
+    def deal_damage(self, modifiers=1):
+        
+        damage = modifiers * (self.damage + self.weapon.get_damage())
+
+        return damage
 
     # Expects incoming unmodified damage
     def take_damage(self, incoming_damage):
