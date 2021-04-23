@@ -10,10 +10,17 @@ class Inventory():
         self.bag = []
         self.current_weight = 0
 
+    # String representation
+    def __str__(self):
+        return str(self.bag)
+
     # Getters
 
     def get_weight(self):
         return self.current_weight
+
+    def get_bag(self):
+        return self.bag
 
     # Add item
     def add_item(self, item, weight):
