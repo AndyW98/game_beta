@@ -1,14 +1,21 @@
 from Item.Weapon.weapon import Weapon, DamageType
+from Item.item import Item
+
 
 class Stick (Weapon):
 
     # Constructor
-    def __init__(self, args, level=1, name="stick"):
-        Weapon.__init__(self, args, level, name)
+    def __init__(self, weight=1, damage=1, level=1, name="stick", health=10):
+        Weapon.__init__(self, weight, damage, level, name, health)
 
         self.level = level
         self.name = name
         self.attack_type = DamageType.MELEE
+
+    def __str__(self):
+        stick_str = Weapon.__str__(self) + "\n" + \
+                    "Weapon Type: Stick"
+        return stick_str
 
     # Getter
 
@@ -24,10 +31,24 @@ class Stick (Weapon):
               "Weight: " + str(self.weight) + "\n" + \
               "--------------------\n")
 
+    # Special Attack
+    # 
     # Deals damage based on half of the weapon's level
     # times the weapon's base damage
+    # 
+    # Using this attack hurts the weapon
     def smack(self):
-        return round(0.5 * self.level * self.damage)
+        if (self.current_health > 0):
+            self.current_health -= 1
+            return round(0.5 * self.level * self.damage)
+        else:
+            return 1
+
+        
+
+        
+        
+    
 
     
 
