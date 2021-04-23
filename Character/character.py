@@ -23,15 +23,13 @@ class Character():
         self.weapon = Weapon() # Held weapon
 
         # Derived Stats
-        self.max_health = 2 * args['base_stats']['con'] * args['level']
+        self.max_health = 2 * self.base_stats['con'] * self.level
         self.health = self.max_health
         self.exp = 200 * (self.level - 1) * self.level
         self.carry_cap = 5 * args['base_stats']['str'] # Carrying Capacity
 
-        
-        #self.damage = args['damage']
-        self.damage = round(args['base_stats']['str'] / 3)
-        self.defense = args['defense']
+        self.damage = 2 * (self.base_stats['str'] - 10)
+        self.defense = round(0.5 * (self.base_stats['dex'] - 10))
 
     def __str__(self):
         stats = "--------------------\n" + \

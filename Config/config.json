@@ -4,10 +4,6 @@
             "main_char": {
                 "name": "Jerry",
                 "level": 1,
-                "health": 10,
-                "max_health": 10,
-                "damage": 2,
-                "defense": 2,
                 "base_stats": {
                     "con": 10,
                     "dex": 10,
@@ -22,10 +18,6 @@
             "example_villain": {
                 "name": "villain_1",
                 "level": 1,
-                "health": 10,
-                "max_health": 10,
-                "damage": 3,
-                "defense": 1,
                 "base_stats": {
                     "con": 10,
                     "dex": 10,
