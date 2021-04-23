@@ -58,9 +58,14 @@ def main():
     villain = char_list['example_villain']
     villain.level_up("str", "dex")
 
-    Combat("melee", [main_char, villain])
-    main_char.pretty_print_stats()
-    villain.pretty_print_stats()
+    #Combat("melee", [main_char, villain])
+    #main_char.pretty_print_stats()
+    #villain.pretty_print_stats()
+
+    main_char.attack(villain)
+    main_char.attack(wood_spoon)
+    print(main_char)
+    print(villain)
 
     # Test print weapons
     # wood_spoon.print_weapon_stats()
