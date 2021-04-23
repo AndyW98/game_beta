@@ -3,8 +3,8 @@ from Item.Weapon.weapon import Weapon, DamageType
 class Knife (Weapon):
 
     # Constructor
-    def __init__(self, args, level=1, name="stick"):
-        Weapon.__init__(self, args, level, name)
+    def __init__(self, weight=1, damage=1, level=1, name="stick", health=20):
+        Weapon.__init__(self, weight, damage, level, name, health)
 
         self.level = 1
         self.name = name

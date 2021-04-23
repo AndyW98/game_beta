@@ -1,11 +1,10 @@
 '''
 Abstract class of items
 '''
-
 class Item():
 
-    def __init__(self, args, name="item"):
-        self.weight = args['weight']
+    def __init__(self, weight=1, name="item"):
+        self.weight = weight
         self.name = name
         self.cost = 0
 
