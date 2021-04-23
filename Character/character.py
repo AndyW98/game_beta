@@ -18,14 +18,15 @@ class Character():
         self.health = args['health']
         self.base_stats = args['base_stats']
 
+        self.bag = Inventory()
+
+        # Derived Stats
         self.max_health = 2 * args['base_stats']['con'] * args['level']
         self.health = self.max_health
         self.exp = 200 * (self.level - 1) * self.level
         self.carry_cap = 5 * args['base_stats']['str'] # Carrying Capacity
 
-        self.bag = Inventory()
-
-
+        
         self.damage = args['damage']
         self.defense = args['defense']
     
@@ -41,16 +42,16 @@ class Character():
         print("Inventory Weight: " + \
               str(self.bag.get_weight()) + " / " + \
               str(self.carry_cap))
+        print(self.bag)
+
+    # Getters
+
     def get_damage(self):
         return self.damage
     
     def get_defense(self):
         return self.defense
     
-    # Expects incoming unmodified damage
-    def take_damage(self, incoming_damage):
-        self.health -= max(0, (incoming_damage - self.get_defense()))
-
     # Gets the stats of the caracter
     def get_stats(self):
         my_dict = {
@@ -74,7 +75,13 @@ class Character():
                 "Health: " + str(self.health) + \
                 " / " + str(self.max_health) + "\n" + \
                 "--------------------\n" + \
-                "Stats            \n" + \
+                "Stats -\n" + \
+                "  Strength:     " + str(self.base_stats["str"]) + "\n" + \
+                "  Dexterity:    " + str(self.base_stats["dex"]) + "\n" + \
+                "  Constitution: " + str(self.base_stats["con"]) + "\n" + \
+                "  Intelligence: " + str(self.base_stats["int"]) + "\n" + \
+                "  Wisdom:       " + str(self.base_stats["wis"]) + "\n" + \
+                "  Charisma:     " + str(self.base_stats["cha"]) + "\n" + \
                 "--------------------\n"
         print(stats)
 
@@ -91,3 +98,7 @@ class Character():
         self.max_health += int(0.5 * self.base_stats['con'])
         self.health = self.max_health
         self.exp = 200 * (self.level - 1) * self.level
+
+    # Expects incoming unmodified damage
+    def take_damage(self, incoming_damage):
+        self.health -= max(0, (incoming_damage - self.get_defense()))
