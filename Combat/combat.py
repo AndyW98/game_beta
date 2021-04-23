@@ -11,8 +11,8 @@ class Combat:
     def trade_damage(self, char_1, char_2):
         # Save damage before applying, to simulate
         # simultaneous damage
-        char_1_dmg = char_1.get_damage() + d8()[0][0]
-        char_2_dmg = char_2.get_damage() + d8()[0][0]
+        char_1_dmg = char_1.deal_damage() + d8()[0][0]
+        char_2_dmg = char_2.deal_damage() + d8()[0][0]
 
         # Apply unmodified damage to each character
         char_1.take_damage(char_2_dmg)
