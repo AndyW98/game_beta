@@ -9,6 +9,10 @@ from Character.character import Character
 from Config.config import Config
 from Combat.combat import Combat
 
+from Item.item import Item
+from Item.Weapon.weapon import Weapon
+from Item.Weapon.stick import Stick
+
 '''
 When making a large project, the first step you want to do is
 break it down into smaller components. For example, if you want
@@ -38,18 +42,28 @@ def main():
     # name of MAIN_CHAR_NAME
     conf = Config("Config/config.json")
     char_list = conf.get_char_list()
+    weapon_list = conf.get_data().get("weapons")
+
+    # Test items
+    wood_spoon = Stick(weapon_list.get("stick").get("weight"), \
+        weapon_list.get("stick").get("damage"), 5, "Wood Spoon")
 
     main_char = char_list['main_char']
-    main_char.level_up()
+    main_char.level_up("str", "dex")
+
+    # testing adding a weapon
+    main_char.add_item(wood_spoon)
+    main_char.equip_weapon(wood_spoon)
 
     villain = char_list['example_villain']
-    villain.level_up()
+    villain.level_up("str", "dex")
 
     Combat("melee", [main_char, villain])
     main_char.pretty_print_stats()
     villain.pretty_print_stats()
-    
-    print(main_char.print_bag())
+
+    # Test print weapons
+    # wood_spoon.print_weapon_stats()
 
 if __name__ == "__main__":
     main()
