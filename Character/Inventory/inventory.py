@@ -23,13 +23,15 @@ class Inventory():
         return self.bag
 
     # Add item
-    def add_item(self, item, weight):
+    # Expects an Item object
+    def add_item(self, item):
         self.bag.append(item)
-        self.current_weight += weight
+        self.current_weight += item.get_weight()
 
     # Remove item
-    def remove_item(self, item, weight):
+    # Expects an Item object
+    def remove_item(self, item):
         self.bag.remove(item)
-        self.current_weight -= weight
+        self.current_weight -= item.get_weight()
     
     
