@@ -6,7 +6,7 @@ from Character.hero import Hero
 
 class Config():
 
-    # This is for managing the config file
+    """This is for managing the config file"""
     def __init__(self, filename, params=[]):
         self.filename = filename
         self.char_list = {}
@@ -21,22 +21,22 @@ class Config():
 
     #def write(self, params):
 
-    # Returns the config data
     def get_data(self):
+        """Return the config data"""
         return self.data
     
-    # Returns the character list
     def get_char_list(self):
+        """Returns the character list"""
         return self.char_list
 
-    # Read the config file
     def read(self):
+        """Reads the config file"""
         with open(self.filename) as f:
             data = json.load(f)
         return data
     
-    # Dynamically make character objects from the config file
     def make_chars(self):
+        """Dynamically make character objects from the config file"""
         for char_type in self.data['characters'].keys():
             for char in self.data['characters'][char_type].keys():
                 if char_type == "villains":
