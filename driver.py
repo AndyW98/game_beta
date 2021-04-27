@@ -13,6 +13,9 @@ from Item.item import Item
 from Item.Weapon.weapon import Weapon
 from Item.Weapon.stick import Stick
 
+from UI.game import GameState, UserInterface
+from UI.menu import *
+
 '''
 When making a large project, the first step you want to do is
 break it down into smaller components. For example, if you want
@@ -43,12 +46,13 @@ def main():
     conf = Config("Config/config.json")
     char_list = conf.get_char_list()
     weapon_list = conf.get_data().get("weapons")
+    game_info = conf.get_data().get('game_info')
 
     # Test items
     wood_spoon = Stick(weapon_list.get("stick").get("weight"), \
         weapon_list.get("stick").get("damage"), 5, "Wood Spoon")
 
-    main_char = char_list['main_char']
+    """main_char = char_list['main_char']
     main_char.level_up("str", "dex")
 
     # testing adding a weapon
@@ -65,7 +69,14 @@ def main():
     main_char.attack(villain)
     main_char.attack(wood_spoon)
     print(main_char)
-    print(villain)
+    print(villain)"""
+
+    # Test for loading the menu
+    Menu(game_info).run()
+
+    # Test for loading movement
+    #Game(game_info).run()
+
 
     # Test print weapons
     # wood_spoon.print_weapon_stats()
