@@ -2,6 +2,8 @@ import tkinter as tk
 import pygame
 
 
+from UI.menu import Menu
+
 class GameState():
 
     """This class handles the game state"""
@@ -33,6 +35,26 @@ class UserInterface():
     def __init__(self,args):
         pygame.init() # Initializes the window
         
+        self.menus = {}
+        
+        self.menus['main_menu'] = {
+            'options': [
+                            {
+                                'title': "Choose a Character",
+                                'action': lambda: self.choose_character(args)
+                            },
+                            {
+                                'title': "Quit",
+                                'action': lambda: self.exit_menu()
+                            }
+                        ]
+        }
+        self.menus['main_menu']['window'] = Menu(args, self.menus['main_menu']['options'])
+        self.current_window = self.menus['main_menu']['window']
+
+        self.running = True
+
+        """
         self.window_dim = (args['game_window_width'], args['game_window_height'])
 
         # makes a game window that is resizable
@@ -46,8 +68,7 @@ class UserInterface():
         self.running = True # For the game loop
         self.moveCommandX = 0
         self.moveCommandY = 0
-
-        
+        """
 
     def update(self):
         """Updates movement"""
@@ -101,12 +122,44 @@ class UserInterface():
         y = self.game_state.y
         pygame.draw.rect(self.window, (0,0,255), (x,y,40,40))
         pygame.display.update()
+    
+    def exit_menu(self):
+        """Exits the menu when player selects 'Quit'"""
+        self.running = False
+    
+    def change_menu(self, menu_name):
+        """Change the current menu"""
+        self.current_window = self.menus[menu_name]['window']
+
+    def choose_character(self, args):
+        """A menu to choose a character"""
+        if "character_menu" not in self.menus.keys():
+            
+            self.make_menu("character_menu", args,
+            {'options': [
+                            {
+                                'title': "Back",
+                                'action': lambda: self.change_menu("main_menu")
+                            }
+                        ]
+            })
+        self.change_menu("character_menu")
+
+    def make_menu(self, menu_name, args, options):
+        self.menus[menu_name] = options
+        self.menus[menu_name]['window'] = Menu(args, self.menus[menu_name]['options'])
 
 
     def run(self):
         while self.running:
-            self.process_input()
-            self.update()
-            self.render()
-            self.clock.tick(60)
+            #self.process_input()
+            #self.update()
+            #self.render()
+            #self.clock.tick(60)
+
+            self.current_window.process_input()
+            self.current_window.update()
+            self.current_window.render()
+            self.current_window.clock.tick(60)
+
         pygame.quit()

@@ -1,10 +1,92 @@
 import pygame
 
-class Menu():
+colors = {
+        "White": (255, 255, 255),
+        "Black": (0, 0, 0),
+        "Red": (255, 0, 0),
+        "Green": (0, 255, 0),
+        "Blue": (0, 0, 255)
+        }
+
+class Button():
+    """A customizable button that registers mouse clicks"""
+    def __init__(self, x, y, sx, sy, bcolor, fbcolor, font, fontsize, fcolor, text):
+        self.x = x
+        self.y = y
+        self.sx = sx
+        self.sy = sy
+        self.bcolor = bcolor
+        self.fbcolor = fbcolor
+        self.fcolor = fcolor
+        self.fontsize = fontsize
+        self.text = text
+        self.current = False
+        self.buttonf = pygame.font.SysFont(font, fontsize)
+    
+    def show_button(self, display):
+        if(self.current):
+            pygame.draw.rect(display, self.fbcolor, (self.x, self.y, self.sx, self.sy))
+        
+        else:
+            pygame.draw.rect(display, self.bcolor, (self.x, self.y, self.sx, self.sy))
+        
+        textsurface = self.buttonf.render(self.text, False, self.fcolor)
+        display.blit(textsurface,
+                    (
+                        (self.x + (self.sx/2) - (self.fontsize/2)*(len(self.text)/2 - 5)),
+                        (self.y + (self.sy/2) - (self.fontsize/2) - 4)
+                    )
+                    )
+    
+    def focus_check(self, mousepos, mouseclick):
+        if (
+            mousepos[0] >= self.x 
+            and mousepos[0] <= self.x + self.sx
+            and mousepos[1] >= self.y
+            and mousepos[1] <= self.y + self.sy
+            ):
+            self.current = True
+            return mouseclick[0]
+        
+        else:
+            self.current = False
+            return False
+
+class Screen():
+    """A pygame screen"""
+    def __init__(self, title, width=640, height=445, fill=colors['White']):
+        self.title = title
+        self.width = width
+        self.height = height
+        self.fill = fill
+        self.current = False
+    
+    def make_current(self):
+        pygame.display.set_caption(self.title)
+        self.screen = pygame.display.set_mode((self.width, self.height))
+    
+    def end_current(self):
+        self.current = False
+    
+    def check_update(self):
+        return self.current
+    
+    def screen_update(self):
+        if(self.current):
+            self.screen.fill(self.fill)
+    
+    def return_title(self):
+        return self.screen
+
+class Menu(Screen):
 
     """An abstract class to handle menus"""
 
     def __init__(self, args, menu_items=[]):
+        super().__init__(title=args['game_title'],
+                         width=args['game_window_width'],
+                         height=args['game_window_height'],
+                         fill=args['colors']['main_window'])
         pygame.init()
         self.window_dim = (args['game_window_width'], args['game_window_height'])
 
@@ -38,7 +120,7 @@ class Menu():
         self.current_menu_item = 0
         
         # Loads cursor
-        self.menu_cursor = pygame.image.load("UI\\arrow.png")
+        self.menu_cursor = pygame.image.load(args['cursor_image'])
         self.menu_cursor = pygame.transform.scale(self.menu_cursor,
                                                   (43, 43))
 

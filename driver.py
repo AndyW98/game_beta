@@ -72,7 +72,8 @@ def main():
     print(villain)"""
 
     # Test for loading the menu
-    Menu(game_info).run()
+    #Menu(game_info).run()
+    UserInterface(game_info).run()
 
     # Test for loading movement
     #Game(game_info).run()
