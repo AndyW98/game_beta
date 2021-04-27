@@ -12,6 +12,7 @@ from Combat.combat import Combat
 from Item.item import Item
 from Item.Weapon.weapon import Weapon
 from Item.Weapon.stick import Stick
+from Item.Weapon.knife import Knife
 
 from UI.game import GameState, UserInterface
 from UI.menu import *
@@ -49,8 +50,19 @@ def main():
     game_info = conf.get_data().get('game_info')
 
     # Test items
-    wood_spoon = Stick(weapon_list.get("stick").get("weight"), \
-        weapon_list.get("stick").get("damage"), 5, "Wood Spoon")
+    item_list = {}
+
+    wood_spoon = Stick(weight=weapon_list.get("stick").get("weight"),
+                       power=weapon_list.get("stick").get("damage"),
+                       level=5,
+                       name="Wood Spoon")
+    item_list[wood_spoon.name] = wood_spoon
+
+    kitchen_knife = Knife(weight=weapon_list.get("knife").get("weight"),
+                          power=weapon_list.get("knife").get("damage"),
+                          level=3,
+                          name="Kitchen Knife")
+    item_list[kitchen_knife.name] = kitchen_knife
 
     """main_char = char_list['main_char']
     main_char.level_up("str", "dex")
@@ -73,7 +85,7 @@ def main():
 
     # Test for loading the menu
     #Menu(game_info).run()
-    UserInterface(game_info).run()
+    UserInterface(item_list, char_list, game_info).run()
 
     # Test for loading movement
     #Game(game_info).run()
