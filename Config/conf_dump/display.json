@@ -1,0 +1,15 @@
+{
+    "game_info": {
+        "game_title": "Game Beta",
+        "game_title_font": "Helvetica",
+        "game_window_width": 600,
+        "game_window_height": 480,
+        "cursor_image": "UI\\arrow.png",
+        "colors": {
+            "main_window": [200, 200, 200],       
+            "title_color": [110, 40, 225],
+            "cells": "#B68CCF",
+            "empty_cell": "#FFFFFF"
+        }
+    }
+}

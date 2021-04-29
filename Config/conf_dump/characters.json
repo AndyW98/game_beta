@@ -1,0 +1,30 @@
+{
+    "heroes": {
+        "main_char": {
+            "name": "Jerry",
+            "level": 1,
+            "base_stats": {
+                "con": 10,
+                "dex": 10,
+                "wis": 10,
+                "int": 10,
+                "str": 10,
+                "cha": 10
+            }
+        }
+    },
+    "villains": {
+        "example_villain": {
+            "name": "villain_1",
+            "level": 1,
+            "base_stats": {
+                "con": 10,
+                "dex": 10,
+                "wis": 10,
+                "int": 10,
+                "str": 10,
+                "cha": 10
+            }
+        }
+    }
+}
