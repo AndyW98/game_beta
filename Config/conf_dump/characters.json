@@ -14,7 +14,7 @@
         }
     },
     "villains": {
-        "example_villain": {
+        "example_villain_1": {
             "name": "villain_1",
             "level": 1,
             "base_stats": {
@@ -24,6 +24,18 @@
                 "int": 10,
                 "str": 10,
                 "cha": 10
+            }
+        },
+        "example_villain_2": {
+            "name": "villain_2",
+            "level": 1,
+            "base_stats": {
+                "con": 12,
+                "dex": 8,
+                "wis": 7,
+                "int": 9,
+                "str": 16,
+                "cha": 12
             }
         }
     }
