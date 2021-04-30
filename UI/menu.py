@@ -90,14 +90,19 @@ class Menu(Screen):
         pygame.init()
         self.window_dim = (args['game_window_width'], args['game_window_height'])
 
-        # makes a game window that is resizable
-        self.window = pygame.display.set_mode(self.window_dim, flags=pygame.RESIZABLE) 
+        # makes a game window
+        self.make_current()
+
+
+
+        self.window = pygame.display.set_mode(self.window_dim) 
         pygame.display.set_caption(args['game_title'])
 
-        # Set font
-        font_loc = pygame.font.match_font(args['game_title_font'])
-        self.title_font = pygame.font.Font(font_loc, 48)
-        self.item_font = pygame.font.Font(font_loc, 20)
+        # Set fonts
+        title_font_loc = pygame.font.match_font(args['game_title_font'])
+        txt_font_loc = pygame.font.match_font(args['game_text_font'])
+        self.title_font = pygame.font.Font(title_font_loc, 72)
+        self.item_font = pygame.font.Font(txt_font_loc, 20)
         
         # Colors
         self.bg_color = args['colors']
