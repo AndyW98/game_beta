@@ -44,10 +44,10 @@ def main():
     # function, but later on it's wiser to partition off its
     # declaration. Here, we make a main character with the
     # name of MAIN_CHAR_NAME
-    conf = Config("Config/config.json")
+    conf = Config()
     char_list = conf.get_char_list()
-    weapon_list = conf.get_data().get("weapons")
-    game_info = conf.get_data().get('game_info')
+    weapon_list = conf.get_data().get("items").get("weapons")
+    game_info = conf.get_data().get('display').get('game_info')
 
     # Test items
     item_list = {}
