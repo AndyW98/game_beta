@@ -147,10 +147,12 @@ class UserInterface():
     
     def change_menu(self, menu_name):
         """Change the current menu"""
+        self.current_window.end_current()
         self.current_window = self.menus[menu_name]['window']
     
     def open_level(self, level_name):
         """Open the named level"""
+        self.current_window.end_current()
         self.current_window = Level(self.args, level_name)
 
     def make_menu(self, menu_name, args, options):

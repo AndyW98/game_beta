@@ -12,14 +12,6 @@ class Menu(Screen):
                          width=args['game_window_width'],
                          height=args['game_window_height'],
                          fill=args['colors']['main_window'])
-        pygame.init()
-        self.window_dim = (args['game_window_width'], args['game_window_height'])
-
-        # makes a game window
-        self.make_current()
-
-        self.window = pygame.display.set_mode(self.window_dim) 
-        pygame.display.set_caption(args['game_title'])
 
         # Set fonts
         title_font_loc = pygame.font.match_font(args['game_title_font'])
