@@ -2,7 +2,8 @@ import tkinter as tk
 import pygame
 
 
-from UI.menu import Menu
+from UI.ScreenTypes.menu import Menu
+from UI.ScreenTypes.level import Level
 
 class GameState():
 
@@ -37,6 +38,7 @@ class UserInterface():
         
         self.char_list = char_list
         self.item_list = item_list
+        self.args      = args
 
         # Add menus to the window
         self.menus = {
@@ -49,6 +51,10 @@ class UserInterface():
                     {
                         'title': "View Items",
                         'action': lambda: self.change_menu("items_menu")
+                    },
+                    {
+                        'title': "View Levels",
+                        'action': lambda: self.change_menu("levels_menu")
                     },
                     {
                         'title': "Quit",
@@ -66,6 +72,18 @@ class UserInterface():
             },
             'items_menu': {
                 'options': [
+                    {
+                        'title': "Back",
+                        'action': lambda: self.change_menu("main_menu")
+                    }
+                ]
+            },
+            'levels_menu': {
+                'options': [
+                    {
+                        'title': "Level 1",
+                        'action': lambda: self.open_level("level_1")
+                    },
                     {
                         'title': "Back",
                         'action': lambda: self.change_menu("main_menu")
@@ -92,7 +110,7 @@ class UserInterface():
 
         # Initialize each menu
         for menu in self.menus.keys():
-            self.menus[menu]['window'] = Menu(args, self.menus[menu]['options'])
+            self.menus[menu]['window'] = Menu(self.args, self.menus[menu]['options'])
 
         # Set the current window to the main menu
         self.current_window = self.menus['main_menu']['window']
@@ -130,6 +148,10 @@ class UserInterface():
     def change_menu(self, menu_name):
         """Change the current menu"""
         self.current_window = self.menus[menu_name]['window']
+    
+    def open_level(self, level_name):
+        """Open the named level"""
+        self.current_window = Level(self.args, level_name)
 
     def make_menu(self, menu_name, args, options):
         """Make a new menu with options"""
@@ -183,6 +205,7 @@ class UserInterface():
                     self.moveCommandY = -20"""                      
 
     def render(self):
+        """Render the window state"""
         self.window.fill((0,0,0))
         x = self.game_state.x
         y = self.game_state.y
@@ -191,6 +214,7 @@ class UserInterface():
 
 
     def run(self):
+        """Main control loop"""
         while self.running:
             #self.process_input()
             #self.update()

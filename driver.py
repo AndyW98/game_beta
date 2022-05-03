@@ -15,7 +15,7 @@ from Item.Weapon.stick import Stick
 from Item.Weapon.knife import Knife
 
 from UI.game import GameState, UserInterface
-from UI.menu import *
+from UI.ScreenTypes.menu import *
 
 '''
 When making a large project, the first step you want to do is

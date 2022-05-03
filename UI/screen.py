@@ -1,0 +1,51 @@
+import pygame
+
+colors = {
+    "White": (255, 255, 255),
+    "Black": (0, 0, 0),
+    "Red": (255, 0, 0),
+    "Green": (0, 255, 0),
+    "Blue": (0, 0, 255)
+}
+
+class Screen():
+    """A pygame screen"""
+    def __init__(self, title, width=640, height=445, fill=colors['White']):
+        self.title = title
+        self.width = width
+        self.height = height
+        self.fill = fill
+        self.current = False
+
+        # Game loop properties
+        self.clock = pygame.time.Clock()
+        self.running = True
+    
+    def make_current(self):
+        pygame.display.set_caption(self.title)
+        self.screen = pygame.display.set_mode((self.width, self.height))
+    
+    def end_current(self):
+        self.current = False
+    
+    def check_update(self):
+        return self.current
+    
+    def render(self):
+        """Virtual function for each derived object"""
+        raise NotImplementedError()
+
+    def update(self):
+        """May need later"""
+        pass
+
+    def screen_update(self):
+        if(self.current):
+            self.screen.fill(self.fill)
+    
+    def return_title(self):
+        return self.screen
+    
+    def exit(self):
+        """Exit the screen"""
+        self.running = False

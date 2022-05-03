@@ -1,40 +1,7 @@
 import pygame
 
+from UI.screen import Screen
 from UI.objects import Button
-
-colors = {
-    "White": (255, 255, 255),
-    "Black": (0, 0, 0),
-    "Red": (255, 0, 0),
-    "Green": (0, 255, 0),
-    "Blue": (0, 0, 255)
-}
-
-class Screen():
-    """A pygame screen"""
-    def __init__(self, title, width=640, height=445, fill=colors['White']):
-        self.title = title
-        self.width = width
-        self.height = height
-        self.fill = fill
-        self.current = False
-    
-    def make_current(self):
-        pygame.display.set_caption(self.title)
-        self.screen = pygame.display.set_mode((self.width, self.height))
-    
-    def end_current(self):
-        self.current = False
-    
-    def check_update(self):
-        return self.current
-    
-    def screen_update(self):
-        if(self.current):
-            self.screen.fill(self.fill)
-    
-    def return_title(self):
-        return self.screen
 
 class Menu(Screen):
 
@@ -51,8 +18,6 @@ class Menu(Screen):
         # makes a game window
         self.make_current()
 
-
-
         self.window = pygame.display.set_mode(self.window_dim) 
         pygame.display.set_caption(args['game_title'])
 
@@ -65,16 +30,17 @@ class Menu(Screen):
         # Colors
         self.bg_color = args['colors']
 
-        default_menu_items = [
-                                 {
-                                     'title': "Item1",
-                                     'action': lambda: self.action()
-                                 },
-                                 {
-                                     'title': "Quit",
-                                     'action': lambda: self.exit_menu()
-                                 }
-                             ]
+        default_menu_items = \
+        [
+            {
+                'title': "Item1",
+                'action': lambda: self.action()
+            },
+            {
+                'title': "Quit",
+                'action': lambda: self.exit_menu()
+            }
+        ]
         if not menu_items:
             self.menu_items = default_menu_items
         else:
@@ -83,13 +49,9 @@ class Menu(Screen):
         self.current_menu_item = 0
         
         # Loads cursor
-        self.menu_cursor = pygame.image.load(args['cursor_image'])
+        self.menu_cursor = pygame.image.load(args['sprite_dir'] + args['cursor_image'])
         self.menu_cursor = pygame.transform.scale(self.menu_cursor,
                                                   (43, 43))
-
-        # Game loop properties
-        self.clock = pygame.time.Clock()
-        self.running = True
 
     def action(self):
         """An action to do when selected"""
@@ -100,7 +62,7 @@ class Menu(Screen):
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                self.exit_menu()
+                self.exit()
                 break            
             elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_DOWN and self.current_menu_item < len(self.menu_items) - 1:
@@ -115,7 +77,7 @@ class Menu(Screen):
                     except Exception as ex:
                         print(ex)
                 elif event.key == pygame.K_ESCAPE:
-                    self.exit_menu()
+                    self.exit()
                     break
 
     def render(self):
@@ -155,14 +117,6 @@ class Menu(Screen):
             y += (120 * surface.get_height()) / 100
 
         pygame.display.update()
-
-    def exit_menu(self):
-        """Exits the menu when player selects 'Quit'"""
-        self.running = False
-
-    def update(self):
-        """May need later"""
-        pass         
 
     def run(self):
         """Runs the menu"""
