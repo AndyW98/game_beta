@@ -25,6 +25,7 @@ class Screen():
 
         # Game loop properties
         self.clock = pygame.time.Clock()
+        self.heartbeat = 0
         self.running = True
 
         # Make this window the current window

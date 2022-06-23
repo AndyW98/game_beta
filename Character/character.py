@@ -16,7 +16,6 @@ class Character():
         # class variables here, defined from the init
         # parameters
         self.name = args['name']
-        self.sprite = args['sprite']
         self.level = args['level']
         self.base_stats = args['base_stats']
 
@@ -32,6 +31,11 @@ class Character():
         self.damage = 2 * (self.base_stats['str'] - 10)
         self.magic = 2 * (self.base_stats['int'] - 10)
         self.defense = round(0.5 * (self.base_stats['dex'] - 10))
+
+        # UI Information
+        self.sprite = args['sprite']
+        self.pos_x = 0
+        self.pos_y = 0
 
     def __str__(self):
         stats = "--------------------\n" + \
@@ -185,3 +189,17 @@ class Character():
         incoming_damage -- damage to be dealt to character
         """
         self.health -= max(0, (incoming_damage - self.get_defense()))
+
+
+    ################
+    # UI Functions #
+    ################
+
+    def update_position(self, x, y):
+        """Updates the character position on the UI"""
+        self.pos_x = x
+        self.pos_y = y
+    
+    def get_position(self):
+        """Returns the character position on the UI"""
+        return (self.pos_x,self.pos_y)

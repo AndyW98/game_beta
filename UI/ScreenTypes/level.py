@@ -29,8 +29,12 @@ class Level(Screen):
                                                     self.height-(2*self.padding_y)))
 
         # Load the main character image
-        self.main_char_img = pygame.image.load(args["sprite_dir"] + char_list["main_char"].sprite).convert_alpha()
+        self.main_char_img = pygame.image.load(args["sprite_dir"] + self.char_list["main_char"].sprite).convert_alpha()
         self.main_char_img = pygame.transform.smoothscale(self.main_char_img, (80,80))
+
+    def update(self):
+        """Update all sprite positions and character information"""
+        self.heartbeat += 1
 
     def render(self):
         """Displays the level"""
@@ -42,7 +46,8 @@ class Level(Screen):
 
     def render_chars(self):
         """Displays the character icons"""
-        self.window.blit(self.main_char_img, (self.padding_x,self.padding_y))
+        main_char_pos = self.char_list["main_char"].get_position()
+        self.window.blit(self.main_char_img, (main_char_pos[0]+self.padding_x,main_char_pos[1]+self.padding_y))
     
     def process_input(self):
         """Processes the user's input in the level"""
@@ -55,3 +60,29 @@ class Level(Screen):
                 if event.key == pygame.K_ESCAPE:
                     self.exit()
                     break
+                if event.key == pygame.K_UP:
+                    main_char_pos = self.char_list["main_char"].get_position()
+                    self.char_list["main_char"].update_position(main_char_pos[0], main_char_pos[1]-1)
+                if event.key == pygame.K_DOWN:
+                    main_char_pos = self.char_list["main_char"].get_position()
+                    self.char_list["main_char"].update_position(main_char_pos[0], main_char_pos[1]+1)
+                if event.key == pygame.K_RIGHT:
+                    main_char_pos = self.char_list["main_char"].get_position()
+                    self.char_list["main_char"].update_position(main_char_pos[0]+1, main_char_pos[1])
+                if event.key == pygame.K_LEFT:
+                    main_char_pos = self.char_list["main_char"].get_position()
+                    self.char_list["main_char"].update_position(main_char_pos[0]-1, main_char_pos[1])
+        
+        keys = pygame.key.get_pressed()
+        if keys[pygame.K_UP]:
+            main_char_pos = self.char_list["main_char"].get_position()
+            self.char_list["main_char"].update_position(main_char_pos[0], main_char_pos[1]-1)
+        if keys[pygame.K_DOWN]:
+            main_char_pos = self.char_list["main_char"].get_position()
+            self.char_list["main_char"].update_position(main_char_pos[0], main_char_pos[1]+1)
+        if keys[pygame.K_RIGHT]:
+            main_char_pos = self.char_list["main_char"].get_position()
+            self.char_list["main_char"].update_position(main_char_pos[0]+1, main_char_pos[1])
+        if keys[pygame.K_LEFT]:
+            main_char_pos = self.char_list["main_char"].get_position()
+            self.char_list["main_char"].update_position(main_char_pos[0]-1, main_char_pos[1])
