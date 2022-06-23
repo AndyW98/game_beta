@@ -56,11 +56,14 @@ class Menu(Screen):
             if event.type == pygame.QUIT:
                 self.exit()
                 break            
+            
             elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_DOWN and self.current_menu_item < len(self.menu_items) - 1:
                     self.current_menu_item += 1
+                
                 elif event.key == pygame.K_UP and self.current_menu_item > 0:
                     self.current_menu_item -= 1
+                
                 elif event.key == pygame.K_RETURN:
                     # When the user selects the option, do the appropriate action
                     menu_item = self.menu_items[self.current_menu_item]
@@ -68,6 +71,7 @@ class Menu(Screen):
                         menu_item['action']()
                     except Exception as ex:
                         print(ex)
+                
                 elif event.key == pygame.K_ESCAPE:
                     self.exit()
                     break

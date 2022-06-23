@@ -16,6 +16,7 @@ class Character():
         # class variables here, defined from the init
         # parameters
         self.name = args['name']
+        self.sprite = args['sprite']
         self.level = args['level']
         self.base_stats = args['base_stats']
 

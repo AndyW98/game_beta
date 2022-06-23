@@ -153,7 +153,7 @@ class UserInterface():
     def open_level(self, level_name):
         """Open the named level"""
         self.current_window.end_current()
-        self.current_window = Level(self.args, level_name)
+        self.current_window = Level(self.args, level_name, self.char_list)
 
     def make_menu(self, menu_name, args, options):
         """Make a new menu with options"""

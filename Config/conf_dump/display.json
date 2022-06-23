@@ -9,7 +9,7 @@
         "game_window_height": 480,
         "cursor_image": "arrow.png",
         "colors": {
-            "main_window": [200, 200, 200],       
+            "main_window": [200, 200, 200],
             "title_color": [110, 40, 225],
             "cells": "#B68CCF",
             "empty_cell": "#FFFFFF"
@@ -17,7 +17,9 @@
         "levels": {
             "level_1": {
                 "title": "Level 1",
-                "background": "kitchen_1.png"
+                "background": "kitchen_1.png",
+                "padding_y": 30,
+                "padding_x": 30
             }
         }
     }

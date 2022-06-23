@@ -2,6 +2,7 @@
     "heroes": {
         "main_char": {
             "name": "Jerry",
+            "sprite": "chef_head.png",
             "level": 1,
             "base_stats": {
                 "con": 10,
@@ -16,6 +17,7 @@
     "villains": {
         "example_villain_1": {
             "name": "villain_1",
+            "sprite": "chef_head.png",
             "level": 1,
             "base_stats": {
                 "con": 10,
@@ -28,6 +30,7 @@
         },
         "example_villain_2": {
             "name": "villain_2",
+            "sprite": "chef_head.png",
             "level": 1,
             "base_stats": {
                 "con": 12,
