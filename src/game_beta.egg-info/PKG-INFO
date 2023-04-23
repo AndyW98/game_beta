@@ -1,0 +1,24 @@
+Metadata-Version: 2.1
+Name: game-beta
+Version: 0.0.1
+Summary: This is a kitchen-themed game.
+Author-email: Andrew Wallace <wallace645@gmail.com>
+Project-URL: Homepage, https://github.com/AndyW98/game_beta
+Project-URL: Bug Tracker, https://github.com/AndyW98/game_beta/issues
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+
+# game_beta
+
+This is a kitchen-themed game.
+
+To install required packages, follow the steps for your OS:
+```
+[Debian Linux]
+
+sudo apt install python3 python3-tk pip
+pip install numpy pygame
+```

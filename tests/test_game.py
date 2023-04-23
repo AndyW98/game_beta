@@ -1,4 +1,4 @@
-from UI.game import GameState, UserInterface
+from ..src.UI.game import GameState, UserInterface
 
 import pytest
 
