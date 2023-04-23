@@ -6,7 +6,7 @@ from Character.character import Character
 from Character.villain import Villain
 from Character.hero import Hero
 
-CONF_FOLDER = "Config/conf_dump"
+CONF_FOLDER = "src/Config/conf_dump"
 
 class Config():
 

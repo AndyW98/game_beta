@@ -1,6 +1,6 @@
 # These are python library imports, more information would be
 # available on the public API
-import tkinter as tk
+# import tkinter as tk
 import time
 
 # These are local imports from other files in your directory

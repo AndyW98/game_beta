@@ -1,7 +1,7 @@
 {
     "game_info": {
-        "sprite_dir":"Images\\Sprites\\",
-        "map_dir": "Images\\Maps\\",
+        "sprite_dir":"src/Images/Sprites/",
+        "map_dir": "src/Images/Maps/",
         "game_title": "Game Beta",
         "game_title_font": "Helvetica",
         "game_text_font": "Helvetica",
