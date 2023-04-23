@@ -1,8 +1,11 @@
-from ..src.UI.game import GameState, UserInterface
+from src.UI.game import GameState, UserInterface
+from src.Config.config import Config
+from src.Item.Weapon.stick import Stick
+from src.Item.Weapon.knife import Knife
 
 import pytest
 
-def main():
+def test_game():
     # gs = GameState()
 
     conf = Config()
@@ -31,4 +34,4 @@ def main():
     assert(True)
 
 if __name__ == "__main__":
-    main()
+    test_game()
