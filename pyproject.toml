@@ -1,18 +1,21 @@
+[build-system]
+requires = ["pdm-backend"]
+build-backend = "pdm.backend"
+
 [project]
 name = "game_beta"
 version = "0.0.1"
-authors = [
-  { name="Andrew Wallace", email="wallace645@gmail.com" },
-]
 description = "This is a kitchen-themed game."
-readme = "README.md"
-requires-python = ">=3.7"
-classifiers = [
-    "Programming Language :: Python :: 3",
-    "License :: OSI Approved :: MIT License",
-    "Operating System :: OS Independent",
+authors = [
+    {name = "Andrew Wallace", email = "wallace645@gmail.com"},
 ]
+dependencies = [
+    "pytest>=7.3.1",
+    "pygame>=2.3.0",
+    "tk>=0.1.0",
+]
+requires-python = ">=3.10"
+license = {text = "MIT"}
 
-[project.urls]
-"Homepage" = "https://github.com/AndyW98/game_beta"
-"Bug Tracker" = "https://github.com/AndyW98/game_beta/issues"
+
+[tool.pdm]
